@@ -20,7 +20,6 @@ Contains classes for basic HTTP transport implementations.
 
 import urllib2
 import base64
-import bz2
 import copy
 import cStringIO
 import gzip
@@ -285,11 +284,6 @@ class HttpTransport(Transport):
                         except zlib.error:
                             # Many web sites fail to send the first bytes of the header
                             reply.message = zlib.decompress(reply.message, -zlib.MAX_WBITS)
-                    elif headerval == 'bzip2':
-                        # decompress bzip content
-                        log.debug('decompressing unix compress content')
-                        reply.message = bz2.decompress(reply.message)
-                        pass
                     else:
                         # unknown scheme
                         log.debug('unsupported content-encoding scheme')
