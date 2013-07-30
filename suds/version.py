@@ -22,5 +22,5 @@ See the setup.py script for more detailed information.
 
 """
 
-__version__ = "0.4.3"
+__version__ = "0.4.3-nobz2"
 __build__ = "philpem 1"
