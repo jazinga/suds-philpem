@@ -90,7 +90,7 @@ again.
 
 """
 
-package_name = "suds"
+package_name = "suds-philpem"
 version_tag = pkg_resources.safe_version(__version__)
 project_url = "https://bitbucket.org/philpem/suds"
 base_download_url = project_url + "/downloads"

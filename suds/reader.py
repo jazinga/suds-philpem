@@ -78,9 +78,6 @@ class DocumentReader(Reader):
         if d is None:
             d = self.download(url)
             cache.put(id, d)
-        else:
-            sax = Parser()
-            d = sax.parse(string=d)
         self.plugins.document.parsed(url=url, document=d.root())
         return d
 

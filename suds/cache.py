@@ -190,8 +190,8 @@ class FileCache(Cache):
     def put(self, id, bfr):
         try:
             fn = self.__fn(id)
-            f = self.open(fn, 'w')
-            f.write(str(bfr))
+            f = self.open(fn, 'wb')
+            f.write(bfr)
             f.close()
             return bfr
         except:
@@ -201,11 +201,11 @@ class FileCache(Cache):
     def putf(self, id, fp):
         try:
             fn = self.__fn(id)
-            f = self.open(fn, 'w')
+            f = self.open(fn, 'wb')
             f.write(fp.read())
             fp.close()
             f.close()
-            return open(fn)
+            return open(fn, 'rb')
         except:
             log.debug(id, exc_info=1)
             return fp
@@ -223,7 +223,7 @@ class FileCache(Cache):
         try:
             fn = self.__fn(id)
             self.validate(fn)
-            return self.open(fn)
+            return self.open(fn, 'rb')
         except:
             pass
 
@@ -269,14 +269,14 @@ class FileCache(Cache):
         path = os.path.join(self.location, 'version')
         try:
 
-            f = self.open(path)
+            f = self.open(path, 'rb')
             version = f.read()
             f.close()
             if version != suds.__version__:
                 raise Exception()
         except:
             self.clear()
-            f = self.open(path, 'w')
+            f = self.open(path, 'wb')
             f.write(suds.__version__)
             f.close()
 
